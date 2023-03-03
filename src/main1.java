@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class main1 {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         //Задача 1
         //Написать метод, читающий текстовый файл и возвращающий строку,
         // состояшую из всех прочитанных строчек.
@@ -10,18 +10,25 @@ public class main1 {
         //bbbb
         //cc
         //Метод вернет aaa bbbb cc
-        System.out.println(readTextFile("file.txt"+" "));
+        System.out.println(readTextFile("file.txt" + " "));
     }
 
-    public static String readTextFile(String file)throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line ;
-        String str = new String();
-        while ((line = br.readLine())!=null) {
-          str =str + line+" ";
+    public static String readTextFile(String file) {
+        String str = null;
+        try (
+                BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            str = new String();
+            while ((line = br.readLine()) != null) {
+                str = str + line + " ";
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
         }
         return str;
-
     }
-
 }
+
+
+
